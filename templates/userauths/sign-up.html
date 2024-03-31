@@ -6,8 +6,19 @@
             {% if form.errors %}
             <div class="alert alert-danger" role="alert">
                 <strong>Error</strong>
-            </div>        
-            {% endif %}            
+            </div>
+            {% endif %} {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <div
+                    class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                    role="alert"
+                >
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </ul>
+            {% endif %}
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
