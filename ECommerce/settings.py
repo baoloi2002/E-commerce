@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Custom Apps
     "core",
+    "userauths",
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,5 @@ JAZZMIN_SETTINGS = {
     "site_logo": "img/logo.png",
     "copyright": "Electro-Shop.com",
 }
+
+AUTH_USER_MODEL = "userauths.User"
