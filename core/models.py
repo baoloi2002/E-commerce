@@ -90,7 +90,6 @@ class Product(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
 
     title = models.CharField(max_length=100, default="Laptop")
     image = models.ImageField(upload_to=user_directory_path, default="product.jpg")
@@ -104,7 +103,7 @@ class Product(models.Model):
     specifications = models.TextField(
         null=True, blank=True, default="This is a product."
     )
-    tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
+    # tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
 
     product_status = models.CharField(
         choices=STATUS, max_length=10, default="in_review"
@@ -209,7 +208,6 @@ class ProductReview(models.Model):
 class WishList(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-    review = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
