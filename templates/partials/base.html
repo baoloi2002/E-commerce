@@ -89,11 +89,24 @@
                         <li>
                             <a href="#"><i class="fa fa-dollar"></i> USD</a>
                         </li>
+                        {% if user.is_authenticated %}
                         <li>
                             <a href="#"
-                                ><i class="fa fa-user-o"></i> My Account</a
+                                ><i class="fa fa-user"></i>My Account</a
                             >
                         </li>
+                        <li>
+                            <a href="{% url 'userauths:sign-out' %}"
+                                ><i class="fa fa-sign-out"></i>Logout</a
+                            >
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="{% url 'userauths:sign-in' %}"
+                                ><i class="fa fa-sign-in"></i>Sign-in</a
+                            >
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

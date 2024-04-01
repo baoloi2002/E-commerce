@@ -3,4 +3,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return render(request, "core/index.html")
+    context = {"user": request.user}
+    return render(request, "core/index.html", context)
