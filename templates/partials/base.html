@@ -91,9 +91,7 @@
                         </li>
                         {% if user.is_authenticated %}
                         <li>
-                            <a href="#"
-                                ><i class="fa fa-user"></i>My Account</a
-                            >
+                            <a href="#"><i class="fa fa-user"></i>My Account</a>
                         </li>
                         <li>
                             <a href="{% url 'userauths:sign-out' %}"
@@ -264,6 +262,17 @@
             <!-- /MAIN HEADER -->
         </header>
         <!-- /HEADER -->
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{ message }}</strong>
+        </div>
+        {% endfor %} {% endif %}
+        <script>
+            setTimeout(function () {
+                $(".alert").alert("close");
+            }, 3000);
+        </script>
+
         {% block content %} {% endblock %}
 
         <!-- FOOTER -->

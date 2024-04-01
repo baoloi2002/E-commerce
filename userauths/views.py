@@ -4,8 +4,7 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate, logout
 from django.conf import settings
-
-User = settings.AUTH_USER_MODEL
+from userauths.models import User
 
 
 def register_view(request):
@@ -37,12 +36,11 @@ def login_view(request):
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
-        user = authenticate(username=email, password=password)
-
+        
         try:
             user = User.objects.get(email=email)
         except:
-            messages.warning(request, "User with {email} does not exist")
+            messages.warning(request, f"User with {email} does not exist")
 
         user = authenticate(request, username=email, password=password)
         if user is not None:
@@ -55,7 +53,7 @@ def login_view(request):
     context = {}
     return render(request, "userauths/sign-in.html", context)
 
-def logout_view(request):
+def logout_view(request):    
     logout(request)
     messages.success(request, "Logout successful")
     return redirect("userauths:sign-in")
