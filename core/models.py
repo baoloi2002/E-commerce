@@ -89,7 +89,9 @@ class Product(models.Model):
     )
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True, related_name="category"
+    )
     vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
 
     title = models.CharField(max_length=100, default="Laptop")
@@ -133,7 +135,7 @@ class Product(models.Model):
 
     def get_percentage(self):
         new_price = (1 - self.price / self.old_price) * 100
-        return round(new_price,0)
+        return round(new_price, 0)
 
 
 class ProductImages(models.Model):
